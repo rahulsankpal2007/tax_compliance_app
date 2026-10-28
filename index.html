@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Indian Tax Compliance Verification</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+  <header class="topbar">
+    <div class="wrap">
+      <h1>Indian Tax Compliance Verification</h1>
+      <p>Propositional Logic Model Checker &middot; Truth Table Enumeration (TT-Entails)</p>
+    </div>
+  </header>
+
+  <main class="wrap">
+
+    <section class="card">
+      <h2>1. Propositions</h2>
+      <div class="legend">
+        <div><b>ITR</b> Taxpayer has filed an Income Tax Return</div>
+        <div><b>TDS</b> Tax has been Deducted at Source</div>
+        <div><b>REF</b> A Tax Refund is generated</div>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>2. Knowledge Base &mdash; Rules</h2>
+      <p class="hint">Each rule is an implication <code>A &rArr; B</code> (equivalent to <code>not A or B</code>). Untick a rule to remove it from the KB.</p>
+      <ul id="rulesList" class="rules"></ul>
+
+      <div class="add-rule">
+        <span>Add rule:</span>
+        <select id="newIf"></select>
+        <span>&rArr;</span>
+        <select id="newThen"></select>
+        <button id="addRuleBtn" class="btn small">Add</button>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>3. Ground Facts</h2>
+      <p class="hint">Verified real-world events. Choose <i>Unknown</i> if the fact is not asserted.</p>
+      <div id="factsBox" class="facts"></div>
+    </section>
+
+    <section class="card">
+      <h2>4. Query</h2>
+      <p class="hint">Is this proposition guaranteed to be <b>True</b> by the Knowledge Base?</p>
+      <select id="querySelect"></select>
+      <button id="verifyBtn" class="btn">Verify Compliance</button>
+      <button id="resetBtn" class="btn ghost">Reset to Report Defaults</button>
+    </section>
+
+    <section id="resultCard" class="card hidden">
+      <h2>Result</h2>
+      <div id="verdict" class="verdict"></div>
+      <p id="verdictDetail" class="hint"></p>
+
+      <h3>Full Truth Table</h3>
+      <div class="table-scroll">
+        <table id="truthTable"></table>
+      </div>
+      <p class="hint small-note">
+        <span class="dot kb"></span> KB true &nbsp;
+        <span class="dot bad"></span> Counterexample (KB true, Query false)
+      </p>
+    </section>
+
+  </main>
+
+  <footer class="wrap foot">
+    Micro Project &middot; Foundation of AI (2ADPC204) &middot; Annasaheb Dange College of Engineering &amp; Technology, Ashta
+  </footer>
+
+  <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>
